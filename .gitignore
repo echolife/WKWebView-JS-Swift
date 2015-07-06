@@ -1,0 +1,48 @@
+st login: Mon Jul  6 14:35:13 on ttys000
+MacBook-Pro:~ taowang$ cd /Users/taowang/Desktop/M1905/Working/1905_micro_ticket_userselect 
+MacBook-Pro:1905_micro_ticket_userselect taowang$ vim gitignore
+MacBook-Pro:1905_micro_ticket_userselect taowang$ vim .gitignore 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Xcode
+#
+build/
+*.pbxuser
+!default.pbxuser
+*.mode1v3
+!default.mode1v3
+*.mode2v3
+!default.mode2v3
+*.perspectivev3
+!default.perspectivev3
+xcuserdata
+*.xccheckout
+*.moved-aside
+DerivedData
+*.hmap
+*.ipa
+*.xcuserstate
+
+# CocoaPods
+#
+# We recommend against adding the Pods directory to your .gitignore. However
+# you should judge for yourself, the pros and cons are mentioned at:
+".gitignore" [dos] 26L, 520C
+

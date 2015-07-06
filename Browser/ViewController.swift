@@ -58,7 +58,7 @@ class ViewController: UIViewController, WKNavigationDelegate, WKScriptMessageHan
         let js = "getRelatedArticles();"
         let data = [0:"No"]
         webView.evaluateJavaScript(js, completionHandler: { (_, error) -> Void in
-            println("出错啦 \(error)")
+            println("出错啦: \(error)")
         })
        
     }

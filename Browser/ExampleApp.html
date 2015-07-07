@@ -19,7 +19,9 @@
         window.webkit.messageHandlers.printQR.postMessage({"Im JS": "I give your Data"});
     }
     
-    function getRelatedArticles() {
+    function getRelatedArticles(data) {
+
+        alert('hello,world')
 
         window.webkit.messageHandlers.printQR.postMessage({"Im JS": "I recived data fram swift"});
     }
@@ -34,7 +36,7 @@
 	</script>
     
 	<div id='buttons'></div>
-    <div id='related'></div>
+    <
     <button id = "print" onclick = "printButton()" >点我传值给Swift</button>
 
     <button id = "abd" onclick = "alertShow()">alertShow</button>

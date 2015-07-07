@@ -28,7 +28,7 @@ class ViewController: UIViewController, WKNavigationDelegate, WKScriptMessageHan
         
         // 将通过oc修改js背景
         let source = "document.body.style.background = \"#777\";"
-        let script = WKUserScript(source: source, injectionTime: .AtDocumentEnd, forMainFrameOnly: true)
+        let script = WKUserScript(source: source, injectionTime: .AtDocumentStart, forMainFrameOnly: true)
         config.userContentController.addUserScript(script)
         
         webView = WKWebView(frame: CGRectZero, configuration: config)
@@ -57,7 +57,7 @@ class ViewController: UIViewController, WKNavigationDelegate, WKScriptMessageHan
         // oc调用js
         let js = "getRelatedArticles();"
         let data = [0:"No"]
-        webView.evaluateJavaScript(js, completionHandler: { (_, error) -> Void in
+        webView.evaluateJavaScript(js, completionHandler: { (data, error) -> Void in
             println("出错啦: \(error)")
         })
        
@@ -75,6 +75,12 @@ class ViewController: UIViewController, WKNavigationDelegate, WKScriptMessageHan
     func webView(webView: WKWebView, didFinishNavigation navigation: WKNavigation!) {
         
         println("完成加载")
+        var exec_template = "getRelatedArticles(Hello World');"
+
+        webView.evaluateJavaScript(exec_template, completionHandler: { (getRelatedArticles, error) -> Void in
+            println(error);
+            println(getRelatedArticles);
+        })
     }
     
     // 有错误发生的时候调用
@@ -96,7 +102,8 @@ class ViewController: UIViewController, WKNavigationDelegate, WKScriptMessageHan
     
     // 当客户端收到服务器的响应头，根据response相关信息，可以决定这次跳转是否可以继续进行
     func webView(webView: WKWebView, decidePolicyForNavigationResponse navigationResponse: WKNavigationResponse, decisionHandler: (WKNavigationResponsePolicy) -> Void) {
-        
+
+        decisionHandler(WKNavigationResponsePolicy.Allow)
     }
     
     

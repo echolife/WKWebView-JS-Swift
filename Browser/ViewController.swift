@@ -70,9 +70,9 @@ class ViewController: UIViewController, WKNavigationDelegate, WKScriptMessageHan
         var parmas = "Hello world"
         var exec_template = "getRelatedArticles('\(parmas)');"
        
-        webView.evaluateJavaScript(exec_template, completionHandler: { (getRelatedArticles, error) -> Void in
+        webView.evaluateJavaScript(exec_template, completionHandler: { (_, error) -> Void in
             println(error);
-            println(getRelatedArticles);
+
         })
         
         

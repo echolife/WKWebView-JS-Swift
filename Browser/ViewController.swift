@@ -51,16 +51,6 @@ class ViewController: UIViewController, WKNavigationDelegate, WKScriptMessageHan
         var content: NSString = NSString(contentsOfFile: patch, encoding: NSUTF8StringEncoding, error: nil)!
         webView.loadHTMLString(content as String, baseURL: url)
         
-
-        
-        
-        // oc调用js
-        let js = "getRelatedArticles();"
-        let data = [0:"No"]
-        webView.evaluateJavaScript(js, completionHandler: { (data, error) -> Void in
-            println("出错啦: \(error)")
-        })
-       
     }
 
     //======
@@ -75,12 +65,19 @@ class ViewController: UIViewController, WKNavigationDelegate, WKScriptMessageHan
     func webView(webView: WKWebView, didFinishNavigation navigation: WKNavigation!) {
         
         println("完成加载")
-        var exec_template = "getRelatedArticles(Hello World');"
-
+        
+         // oc调用js
+        var parmas = "Hello world"
+        var exec_template = "getRelatedArticles('\(parmas)');"
+       
         webView.evaluateJavaScript(exec_template, completionHandler: { (getRelatedArticles, error) -> Void in
             println(error);
             println(getRelatedArticles);
         })
+        
+        
+       
+ 
     }
     
     // 有错误发生的时候调用
@@ -139,7 +136,7 @@ class ViewController: UIViewController, WKNavigationDelegate, WKScriptMessageHan
     
     // js 里面的alert实现，如果不实现，网页的alert函数无效
     func webView(webView: WKWebView, runJavaScriptAlertPanelWithMessage message: String, initiatedByFrame frame: WKFrameInfo, completionHandler: () -> Void) {
-        let alert = UIAlertController(title: "alert", message: nil, preferredStyle: .Alert)
+        let alert = UIAlertController(title: "alert", message: message, preferredStyle: .Alert)
         alert.addAction(UIAlertAction(title: "确定", style: .Default, handler: { (action) -> Void in
             completionHandler()
         }))
